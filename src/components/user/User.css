@@ -1,0 +1,69 @@
+body{
+    background-image: linear-gradient(to right, #66ffff, #0080ff);
+
+}
+.u-create{
+
+    background-color: #ffffff;
+    margin: 5rem 30rem 5rem;
+    border-radius: 25px;
+    padding: 1rem 0 4rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.u-user{
+    margin-top: 0%;
+}
+.u-name{
+    display: flex;
+    justify-content: center;
+}
+
+.custom-select{
+    float: left;
+}
+
+.u-role{
+    margin-left: 2rem;
+}
+
+.u-buttons{
+    display: flex;
+    justify-content: center;
+    float: right;
+    margin:3rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.u-Pwd{
+    display: flex;
+    justify-content: center;
+}
+
+label{
+    float: left;
+    font-weight: bold;
+}
+
+input{
+    border:1px solid #a0a0a0;
+    box-shadow: 10pt;
+}
+
+.u-user{
+    justify-content: center;
+    color:#3182CE;
+    font-weight: bold;
+
+}
+
+.create{
+    background-color: #3182CE;
+    border:1px solid #99ffff;
+    border-radius: 4px;
+}
+.discard{
+    background-color: #F61717;
+    border:1px solid #ff6666;
+    border-radius: 4px;
+}
