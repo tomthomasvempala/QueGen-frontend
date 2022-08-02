@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import './Login.css'
 import collegelogo from '../../images/collegelogo.png'
+import login from '../../Services/login'
 
 import {useNavigate } from 'react-router-dom'
 
@@ -12,12 +13,15 @@ const Login = () => {
 
     let navigate = useNavigate()
 
-    const handleLogin = ()=> {
+    const handleLogin = async ()=> {
         if (username && password) {
-            navigate('/HomeAdmin')
+
+            login(username,password).then((resp)=>{console.log(resp.data)})
+            // console.log(response)
+            // navigate('/HomeAdmin')
             // HomeTeachers or HomeAdmin
         } else {
-            alert('enter all the fields')
+            alert('Enter all the fields')
         }
     }
 
@@ -31,7 +35,7 @@ const Login = () => {
 
             <div className='App-login'>
                     <h1 className='login-heading'>Login</h1>
-                    <form>
+                    <form >
                         <div className='input-container'>
                             <div className='label'>
                                 <label>Username</label>
@@ -54,7 +58,7 @@ const Login = () => {
 
                             </input>
                         </div>
-                        <button onClick={handleLogin} className='Button'>Login</button>    
+                        <button  type="button" onClick={handleLogin} className='Button'>Login</button>    
                     </form>
                     <div className='forgot'>Forgot Password?</div>   
             
