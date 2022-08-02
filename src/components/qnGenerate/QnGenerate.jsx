@@ -4,17 +4,24 @@ import notification from '../../images/notification.png'
 import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
+import subjects from './dummydata'
+
 import user_icon from '../../images/user-icon.png'
 import exam_icon from '../../images/exam-icon.png'
 import mng_icon from '../../images/mng-icon.png'
 import qn_icon from '../../images/qn-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 
-import {Link} from 'react-router-dom'
+import {Link,useParams} from 'react-router-dom'
 
 
 
 const QnGenerate = () => {
+    
+    let subCode = useParams();
+    const subject = subjects.find((s) => { return s.code === subCode.code })
+    let cos = subject.courseOutcomes;
+
     const [date, setDate] = useState(new Date());
 
     function refreshClock() {
@@ -35,7 +42,7 @@ const QnGenerate = () => {
 
     // const[sem,setSem] = useState('');
     // const[sub,setSub] = useState('');
-    const[type,setType] = useState([]);
+    // const[type,setType] = useState([]);
     const[difficulty,setDifficulty] = useState('');
     const[marks,setMarks] = useState('');
 
@@ -91,20 +98,16 @@ const QnGenerate = () => {
                 <div className="qn-conditions">
                     <div className="qn-type">
                         <label>Type</label>
-                        {/* <select className='select-type'
-                        onChange={(e) => {
-                            const type = e.target.value ;
-                            setType(type);
-                        }}
-                        >
-                            <option value="CO1">CO1</option>
-                            <option value="CO2">CO2</option>
-                            <option value="CO3">CO3</option>
-                            <option value="CO4">CO4</option>
-                            <option value="CO5">CO5</option>
-                            <option value="CO6">CO6</option>
-                            
-                        </select> */}
+                        {
+                            cos.map((item) => {
+                                return(
+                                    <form>
+                                        <input type="checkbox" value={item} />
+                                        <label>{item}</label>  <br />
+                                    </form>
+                                )
+                            }) 
+                        }
 
                     </div>
                     <div className="qn-difficulty">
@@ -132,7 +135,7 @@ const QnGenerate = () => {
                 </div>
                 <button onClick = {handleGenerate } className='qn-generatebutton'>Generate</button>
             </div>
-            <p>{type}</p>
+            {/* <p>{type}</p> */}
             <p>{difficulty}</p>
             <p>{marks}</p>
 

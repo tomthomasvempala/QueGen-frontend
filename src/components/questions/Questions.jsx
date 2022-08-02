@@ -77,7 +77,7 @@ const HomeTeachers = () => {
                         <p>Enter Questions</p>
                     </div>
                 </Link>
-                <Link to='/question-generate'>
+                <Link to={'/question-generate/' + subject.code}>
                     <div className="qn-generate">
                         <p>Generate Question Paper</p>
                     </div>
