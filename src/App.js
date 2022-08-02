@@ -6,7 +6,7 @@ import HomeTeachers from './components/homeTeachers/HomeTeachers'
 import { BrowserRouter as Router ,Route, Routes } from 'react-router-dom'
 import Login from './components/login/Login'
 import QnGenerate from './components/qnGenerate/QnGenerate'
-
+import Questions from './components/questions/Questions'
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
              <Route path = '/create' element = {<User/>}/>
              <Route path = '/question-enter' element = {<QnEnter/>} />
              <Route path = '/question-generate' element = {<QnGenerate/>}/>
+             <Route path = '/questions' element = {<Questions/>}/>
 
            </Routes>
        </div>

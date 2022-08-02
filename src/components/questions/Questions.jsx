@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './HomeTeachers.css'
+import './Questions.css'
 
 import user_icon from '../../images/user-icon.png'
 import exam_icon from '../../images/exam-icon.png'
@@ -10,11 +10,9 @@ import notification from '../../images/notification.png'
 import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
-import subjects from './dummydata'
+import {Link} from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
-
-const HomeTeachers = () => {
+const HomeTeachers = () =>{
     const [date, setDate] = useState(new Date());
 
     function refreshClock() {
@@ -28,12 +26,11 @@ const HomeTeachers = () => {
     }, []);
     let cTime = date.toLocaleTimeString();
 
-
-    return (
+    return(
         <div >
             <div className="side-bar">
                 <div className="s-heading">
-                    <h3>Que<br />GEN</h3>
+                    <h3>Que<br/>GEN</h3>
                 </div>
                 <div className="s-icons">
                     <div className="s-user">
@@ -45,7 +42,7 @@ const HomeTeachers = () => {
                         <p>Geak Exam</p>
                     </div>
                     <div className="s-mng">
-                        <img src={mng_icon} alt="not found" name='mng' />
+                        <img src={mng_icon} alt="not found"  name = 'mng'/>
                         <p>Exam Management</p>
                     </div>
                     <div className="s-logout">
@@ -58,42 +55,28 @@ const HomeTeachers = () => {
                     <img src={collegelogo} alt="not found" />
                 </div>
             </div>
-            <div className='nav-wrapper'>
+            <div className = 'nav-wrapper'>
                 <div className="nav-notification">
-                    <img src={notification} alt='not found' />
+                    <img src={notification} alt = 'not found' />
                 </div>
                 <div className="nav-user">
-                    <img src={user} alt='not found' />
+                    <img src= {user} alt = 'not found'/>
                 </div>
                 <div className="nav-time">
                     <p>{cTime}</p>
                 </div>
             </div>
-            <div className="subjects">
-
-                {
-                    subjects.map((item) => {
-                        return (
-                            <Link to ='/questions'>
-                            <div className="s-list">
-                                <p className='sub-text'><b>{item.code}</b></p>
-                                <p>{item.name}</p>
-                            </div>
-                            </Link>
-                        )
-                    })
-
-                }
-
-                {/* <div className="s-list">
-                    deibje
-                </div>
-                <div className="s-list">
-                    deibje
-                </div>
-                <div className="s-list">
-                    deibje
-                </div> */}
+            <div className="qn-based">
+                <Link to = '/question-enter'>
+                    <div className="qn-insert">
+                        <p>Question Bank</p>
+                    </div>
+                </Link> 
+                <Link to = '/question-generate'>
+                    <div className="qn-generate">
+                        <p>Click to Generate Question Paper</p>
+                    </div>
+                </Link>
             </div>
 
         </div>
