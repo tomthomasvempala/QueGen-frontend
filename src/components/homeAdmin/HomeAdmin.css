@@ -1,0 +1,96 @@
+.nav-wrapper{
+    background-color: #ffffff;
+    display:flex;
+    justify-content: right;
+}
+
+.nav-notification{
+    padding: 20px 6px 6px;
+
+   
+}
+
+.nav-user{
+    padding:6px;
+    
+}
+
+.nav-time{
+    padding:6px 12px 6px 6px;
+    
+}
+
+.side-bar{
+    background-color: #ffffff;
+    position:absolute;
+    left:auto;
+    height:100vh;
+    font-family: 'Cabin', sans-serif;
+    box-shadow: 5px 0 4px 0 rgba(112, 111, 111, 0.7);
+}
+
+
+.s-user{
+    display:flex;
+}
+.s-qn{
+    display:flex;
+}
+.s-exam{
+    display:flex;
+}
+.s-mng{
+    display:flex;
+    text-align: left;
+}
+.s-logout{
+    display:flex;
+}
+
+.s-icons img{
+    margin:1rem;
+    cursor:pointer;
+}
+
+.s-heading{
+    font-family: 'Baloo 2', cursive;
+}
+
+.s-icons p{
+    cursor:pointer;
+}
+
+.create-user{
+    /* display:flex; */
+    justify-content: right;
+    padding-right: 10px;
+    background-color: #ffffff;
+    margin:4px 7px 4px 75rem;
+    border-radius: 7px;
+    cursor:pointer;
+    
+}
+
+.create-user img{
+    float:left;
+    padding-right: 5px;
+}
+.cu-text{
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+}
+
+.s-user{
+    background-color: #050844;
+    margin-right: 20px;
+    margin-left: 10px;
+    border-radius: 8px;
+    color: #ffffff;
+    
+}
+
+.teachers-list{
+    background-color: #ffffff;
+    margin-left:15rem;
+    margin-right: 5rem;
+}
