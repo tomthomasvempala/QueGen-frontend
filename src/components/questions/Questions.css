@@ -60,12 +60,12 @@
 }
 .qn-based{
     justify-content: center;
-    width:100%;
-    height:30rem;
-    display:grid;
+    height:5rem;
+    display:flex;
 }
 .qn-based p{
-    padding-top: 5rem;
+    padding-top: 1rem;
+    padding-bottom:1rem;
     font-size: larger;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
@@ -73,36 +73,47 @@
 
 .qn-insert{
     background-color: #ffffff;
-    text-align: center;
-    margin:5px;
-    vertical-align:auto;
+    margin:3px;
     border-radius: 20px;
-    padding-bottom: 4rem;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .qn-insert:hover{
-    background-color: #536163;
-    text-align: center;
-    margin:10px;
+    background-color: #76899b;
+    margin:3px;
     transition:30ms;
-    border-radius: 20px;
     cursor:pointer;
-    color:#f5fbfc;
+    color: #1d1a1a;
+    border-radius: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
+
 .qn-generate{
     background-color:#ffffff;
-    text-align: center;
-    margin:5px;
-    vertical-align: auto;
+    margin:3px;
+    padding-left: 5px;
+    padding-right: 5px;
     border-radius: 20px;
-    padding:4rem;
 }
 .qn-generate:hover{
-    background-color:#536163;
-    text-align: center;
-    margin:10px;
+    background-color: #76899b;
+    margin:3px;
     transition:30ms;
-    vertical-align: auto;
-    border-radius: 20px;
     cursor:pointer;
-    color:#f5fbfc;
-} 
+    color: #1d1a1a;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 20px;
+}
+
+.question-table{
+    background-color: #ffffff;
+    margin-left:15rem;
+    margin-top: 2rem;
+    margin-right:3rem;
+    border-radius: 10px;
+}
+.question-table td{
+    padding:1rem 5rem 1rem;
+}

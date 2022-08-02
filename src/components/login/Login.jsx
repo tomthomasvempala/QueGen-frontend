@@ -54,13 +54,13 @@ const Login = () => {
 
                             </input>
                         </div>
-                        <button onClick={handleLogin} className='Button'>Login</button>    
+                        <button onClick={handleLogin} className='Button'>Login</button>   
                     </form>
                     <div className='forgot'>Forgot Password?</div>   
             
             </div>
-            <p>{username}</p>
-            <p>{password}</p>
+            {/* <p>{username}</p>
+            <p>{password}</p> */}
         </div>
     )
 }

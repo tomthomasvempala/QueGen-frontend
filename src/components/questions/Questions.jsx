@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './Questions.css'
 
+import questionBank from './dummydata'
+
 import user_icon from '../../images/user-icon.png'
 import exam_icon from '../../images/exam-icon.png'
 import mng_icon from '../../images/mng-icon.png'
@@ -10,9 +12,12 @@ import notification from '../../images/notification.png'
 import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
-import {Link} from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-const HomeTeachers = () =>{
+const HomeTeachers = () => {
+    let subCode = useParams();
+    const subject = questionBank.find((s) => { return s.code === subCode.code })
+    let questions = subject.questions;
     const [date, setDate] = useState(new Date());
 
     function refreshClock() {
@@ -26,11 +31,11 @@ const HomeTeachers = () =>{
     }, []);
     let cTime = date.toLocaleTimeString();
 
-    return(
+    return (
         <div >
             <div className="side-bar">
                 <div className="s-heading">
-                    <h3>Que<br/>GEN</h3>
+                    <h3>Que<br />GEN</h3>
                 </div>
                 <div className="s-icons">
                     <div className="s-user">
@@ -42,7 +47,7 @@ const HomeTeachers = () =>{
                         <p>Geak Exam</p>
                     </div>
                     <div className="s-mng">
-                        <img src={mng_icon} alt="not found"  name = 'mng'/>
+                        <img src={mng_icon} alt="not found" name='mng' />
                         <p>Exam Management</p>
                     </div>
                     <div className="s-logout">
@@ -55,30 +60,53 @@ const HomeTeachers = () =>{
                     <img src={collegelogo} alt="not found" />
                 </div>
             </div>
-            <div className = 'nav-wrapper'>
+            <div className='nav-wrapper'>
                 <div className="nav-notification">
-                    <img src={notification} alt = 'not found' />
+                    <img src={notification} alt='not found' />
                 </div>
                 <div className="nav-user">
-                    <img src= {user} alt = 'not found'/>
+                    <img src={user} alt='not found' />
                 </div>
                 <div className="nav-time">
                     <p>{cTime}</p>
                 </div>
             </div>
             <div className="qn-based">
-                <Link to = '/question-enter'>
+                <Link to='/question-enter'>
                     <div className="qn-insert">
-                        <p>Question Bank</p>
+                        <p>Enter Questions</p>
                     </div>
-                </Link> 
-                <Link to = '/question-generate'>
+                </Link>
+                <Link to='/question-generate'>
                     <div className="qn-generate">
-                        <p>Click to Generate Question Paper</p>
+                        <p>Generate Question Paper</p>
                     </div>
                 </Link>
             </div>
-
+            <div className="question-table">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Q.No</th>
+                            <th>Problem Description</th>
+                            <th>Course Outcomes</th>
+                            <th>Mark</th>
+                        </tr>
+                        {
+                            questions.map((item, index) => {
+                                return (
+                                    <tr>
+                                        <td>{index + 1}</td>
+                                        <td>{item.que}</td>
+                                        <td>{item.courseOutcomes}</td>
+                                        <td>{item.mark}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

@@ -74,8 +74,8 @@ const HomeTeachers = () => {
                 {
                     subjects.map((item) => {
                         return (
-                            <Link to ='/questions'>
-                            <div className="s-list">
+                            <Link to ={'/questions/'+item.code}>
+                            <div className="s-list" >
                                 <p className='sub-text'><b>{item.code}</b></p>
                                 <p>{item.name}</p>
                             </div>
@@ -84,16 +84,6 @@ const HomeTeachers = () => {
                     })
 
                 }
-
-                {/* <div className="s-list">
-                    deibje
-                </div>
-                <div className="s-list">
-                    deibje
-                </div>
-                <div className="s-list">
-                    deibje
-                </div> */}
             </div>
 
         </div>

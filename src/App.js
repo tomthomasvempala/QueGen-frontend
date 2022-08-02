@@ -20,7 +20,7 @@ function App() {
              <Route path = '/create' element = {<User/>}/>
              <Route path = '/question-enter' element = {<QnEnter/>} />
              <Route path = '/question-generate' element = {<QnGenerate/>}/>
-             <Route path = '/questions' element = {<Questions/>}/>
+             <Route path = '/questions/:code' element = {<Questions/>}/>
 
            </Routes>
        </div>

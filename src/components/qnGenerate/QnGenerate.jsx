@@ -35,7 +35,7 @@ const QnGenerate = () => {
 
     // const[sem,setSem] = useState('');
     // const[sub,setSub] = useState('');
-    const[type,setType] = useState('');
+    const[type,setType] = useState([]);
     const[difficulty,setDifficulty] = useState('');
     const[marks,setMarks] = useState('');
 
@@ -91,7 +91,7 @@ const QnGenerate = () => {
                 <div className="qn-conditions">
                     <div className="qn-type">
                         <label>Type</label>
-                        <select className='select-type'
+                        {/* <select className='select-type'
                         onChange={(e) => {
                             const type = e.target.value ;
                             setType(type);
@@ -104,7 +104,8 @@ const QnGenerate = () => {
                             <option value="CO5">CO5</option>
                             <option value="CO6">CO6</option>
                             
-                        </select>
+                        </select> */}
+
                     </div>
                     <div className="qn-difficulty">
                         <label>Level of Difficulty</label>
