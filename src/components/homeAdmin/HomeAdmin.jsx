@@ -81,25 +81,27 @@ const HomeAdmin = () => {
 
             <div className="teachers-list">
                 <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Dept</th>
-
-                    </tr>
-                    {
-                        teachers.map((item) => {
-                            return (
-                                <tr>
-                                    <td>{item.id}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.dept}</td>
-                                </tr>
-                            )
-                        })
-                    }
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Dept</th>
+                            <th>E-Mail</th>
+                        </tr>
+                        {
+                            teachers.map((item) => {
+                                return (
+                                    <tr>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.dept}</td>
+                                        <td>{item.email}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
                 </table>
-
             </div>
 
         </div>

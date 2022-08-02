@@ -93,4 +93,10 @@
     background-color: #ffffff;
     margin-left:15rem;
     margin-right: 5rem;
+    margin-top: 2rem;
+    border-radius: 7px;
+}
+
+.teachers-list td{
+    padding:1rem 6rem 1rem;
 }

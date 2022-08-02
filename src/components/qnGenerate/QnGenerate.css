@@ -5,3 +5,14 @@
     margin-left: 14rem;
     border-radius: 10px;
 }
+
+.qn-generatebutton{
+    background-color: #66ffff;
+    border-color:#000000;
+    width:10rem;
+    height:7vh;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 7px;
+    font-family: 'Open Sans', sans-serif;;
+}

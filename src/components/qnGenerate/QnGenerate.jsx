@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useEffect, useState } from 'react'
 import './QnGenerate.css'
 import notification from '../../images/notification.png'
 import user from '../../images/user.png'
@@ -15,6 +15,19 @@ import {Link} from 'react-router-dom'
 
 
 const QnGenerate = () => {
+    const [date, setDate] = useState(new Date());
+
+    function refreshClock() {
+        setDate(new Date());
+    }
+    useEffect(() => {
+        const timerId = setInterval(refreshClock, 1000);
+        return function cleanup() {
+            clearInterval(timerId);
+        };
+    }, []);
+    let cTime = date.toLocaleTimeString();
+
 
     const handleGenerate = () => {
         console.log('hello')
@@ -70,7 +83,7 @@ const QnGenerate = () => {
                     <img src= {user} alt = 'not found'/>
                 </div>
                 <div className="nav-time">
-                    <p>cTime</p>
+                    <p>{cTime}</p>
                 </div>
             </div>
 
@@ -116,7 +129,7 @@ const QnGenerate = () => {
                         </input>
                     </div>
                 </div>
-                <button onClick = {handleGenerate } className='qn-create'>Enter</button>
+                <button onClick = {handleGenerate } className='qn-generatebutton'>Generate</button>
             </div>
             <p>{type}</p>
             <p>{difficulty}</p>

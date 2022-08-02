@@ -14,7 +14,7 @@ const Login = () => {
 
     const handleLogin = ()=> {
         if (username && password) {
-            navigate('/HomeAdmin')
+            navigate('/HomeTeachers')
             // HomeTeachers or HomeAdmin
         } else {
             alert('enter all the fields')
