@@ -1,7 +1,6 @@
 import {useState} from 'react'
 import './Login.css'
 import collegelogo from '../../images/collegelogo.png'
-import login from '../../Services/login'
 
 import {useNavigate } from 'react-router-dom'
 
@@ -15,8 +14,6 @@ const Login = () => {
 
     const handleLogin = async ()=> {
         if (username && password) {
-
-            login(username,password).then((resp)=>{console.log(resp.data)})
             // console.log(response)
             // navigate('/HomeAdmin')
             // HomeTeachers or HomeAdmin
