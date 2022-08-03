@@ -13,11 +13,28 @@ import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
 import { Link, useParams } from 'react-router-dom'
+import Axios from 'axios'
+import baseUrl from '../../Services/base'
 
 const Questions = () => {
+
     let subCode = useParams();
-    const subject = questionBank.find((s) => { return s.code === subCode.code })
-    let questions = subject.questions;
+    // const[questions,setQuestions] = useState([]);
+    const[subject,setSubject] = useState({questions:[]});
+    useEffect(() => {
+        Axios.get(baseUrl + 'questionBank/' + subCode.code,{} ).then((response) => {
+            setSubject(response.data)
+            console.log(response.data)
+            // setQuestions(subject.questions);
+        });
+      }, [subCode]);
+
+
+    
+    
+    // const subject = questionBank.find((s) => { return s.code === subCode.code })
+    // let questions = subject.questions;
+    
     const [date, setDate] = useState(new Date());
 
     function refreshClock() {
@@ -72,12 +89,12 @@ const Questions = () => {
                 </div>
             </div>
             <div className="qn-based">
-                <Link to={'/question-enter/' +subject.code}>
+                <Link to={'/question-enter/' + subCode.code}>
                     <div className="qn-insert">
                         <p>Enter Questions</p>
                     </div>
                 </Link>
-                <Link to={'/question-generate/' + subject.code}>
+                <Link to={'/question-generate/' + subCode.code}>
                     <div className="qn-generate">
                         <p>Generate Question Paper</p>
                     </div>
@@ -93,12 +110,12 @@ const Questions = () => {
                             <th>Mark</th>
                         </tr>
                         {
-                            questions.map((item, index) => {
+                            subject.questions.map((item, index) => {
                                 return (
                                     <tr>
                                         <td>{index + 1}</td>
                                         <td>{item.que}</td>
-                                        <td>{item.courseOutcomes}</td>
+                                        <td>{item.courseOutcome}</td>
                                         <td>{item.mark}</td>
                                     </tr>
                                 )
