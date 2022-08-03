@@ -11,23 +11,27 @@ import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
 import subjects from './dummydata'
-
-import { Link } from 'react-router-dom'
+import Axios from 'axios';
+import { Link, useParams } from 'react-router-dom'
 
 const HomeTeachers = () => {
     const [date, setDate] = useState(new Date());
-
+    const [subs,setSubs] = useState([])
+    const teacherId = useParams().id
     function refreshClock() {
         setDate(new Date());
     }
-    useEffect(() => {
-        const timerId = setInterval(refreshClock, 1000);
-        return function cleanup() {
-            clearInterval(timerId);
-        };
-    }, []);
-    let cTime = date.toLocaleTimeString();
+    // useEffect(() => {
+    //     const timerId = setInterval(refreshClock, 1000);
+    //     return function cleanup() {
+    //         clearInterval(timerId);
+    //     };
+    // }, []);
+    // let cTime = date.toLocaleTimeString();
 
+    Axios.get('http://192.168.1.40:3001'+'/teachers/'+teacherId+'/subjects').then((response)=>{
+        setSubs(response.data)
+    })
 
     return (
         <div >
@@ -66,13 +70,13 @@ const HomeTeachers = () => {
                     <img src={user} alt='not found' />
                 </div>
                 <div className="nav-time">
-                    <p>{cTime}</p>
+                    {/* <p>{cTime}</p> */}
                 </div>
             </div>
             <div className="subjects">
 
                 {
-                    subjects.map((item) => {
+                    subs.map((item) => {
                         return (
                             <Link to ={'/questions/'+item.code}>
                             <div className="s-list" >
@@ -87,7 +91,7 @@ const HomeTeachers = () => {
             </div>
 
         </div>
-    )
+    )   
 }
 
 export default HomeTeachers

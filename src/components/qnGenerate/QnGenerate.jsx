@@ -12,15 +12,17 @@ import mng_icon from '../../images/mng-icon.png'
 import qn_icon from '../../images/qn-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 
-import {Link,useParams} from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 
 const QnGenerate = () => {
-    
+
     let subCode = useParams();
     const subject = subjects.find((s) => { return s.code === subCode.code })
     let cos = subject.courseOutcomes;
+
+    const [coutcomes, setCoutcomes] = useState([]);
 
     const [date, setDate] = useState(new Date());
 
@@ -43,23 +45,23 @@ const QnGenerate = () => {
     // const[sem,setSem] = useState('');
     // const[sub,setSub] = useState('');
     // const[type,setType] = useState([]);
-    const[difficulty,setDifficulty] = useState('');
-    const[marks,setMarks] = useState('');
+    const [difficulty, setDifficulty] = useState('');
+    const [marks, setMarks] = useState('');
 
 
-    return(
+    return (
         <div>
             <div className="side-bar">
-                <Link to = './HomeTeachers'>
+                <Link to='./HomeTeachers'>
                     <div className="s-heading">
-                        <h3>Que<br/>GEN</h3>
+                        <h3>Que<br />GEN</h3>
                     </div>
                 </Link>
                 <div className="s-icons">
-                        <div className="s-user">
-                            <img src={user_icon} alt="not found" />
-                            <p>User</p>
-                        </div>
+                    <div className="s-user">
+                        <img src={user_icon} alt="not found" />
+                        <p>User</p>
+                    </div>
                     <div className="s-qn">
                         <img src={qn_icon} alt="not found" />
                         <p>Question</p>
@@ -69,7 +71,7 @@ const QnGenerate = () => {
                         <p>Geak Exam</p>
                     </div>
                     <div className="s-mng">
-                        <img src={mng_icon} alt="not found"  name = 'mng'/>
+                        <img src={mng_icon} alt="not found" name='mng' />
                         <p>Exam Management</p>
                     </div>
                     <div className="s-logout">
@@ -82,12 +84,12 @@ const QnGenerate = () => {
                     <img src={collegelogo} alt="not found" />
                 </div>
             </div>
-            <div className = 'nav-wrapper'>
+            <div className='nav-wrapper'>
                 <div className="nav-notification">
-                    <img src={notification} alt = 'not found' />
+                    <img src={notification} alt='not found' />
                 </div>
                 <div className="nav-user">
-                    <img src= {user} alt = 'not found'/>
+                    <img src={user} alt='not found' />
                 </div>
                 <div className="nav-time">
                     <p>{cTime}</p>
@@ -99,24 +101,44 @@ const QnGenerate = () => {
                     <div className="qn-type">
                         <label>Type</label>
                         {
-                            cos.map((item) => {
-                                return(
+                            cos.map((item, index) => {
+                                return (
                                     <form>
-                                        <input type="checkbox" value={item} />
+                                        <input type="checkbox" value={item}
+                                            onChange={(e) => {
+                                                
+                                                if (e.target.checked) {
+                                                    coutcomes.push(index + 1)
+                                                    console.log(coutcomes)
+                                                    setCoutcomes(coutcomes)
+                                
+                                                } else {
+                                                    let i = coutcomes.indexOf(index + 1)
+                                                    // console.log(index)
+                                                    coutcomes.splice(i,1)
+                                                    console.log(coutcomes)
+                                                    setCoutcomes(coutcomes)
+                                    
+                                                }
+                                                
+                                        }
+                                        }
+                                        
+                                        />
                                         <label>{item}</label>  <br />
                                     </form>
                                 )
-                            }) 
+                            })
                         }
 
                     </div>
                     <div className="qn-difficulty">
                         <label>Level of Difficulty</label>
                         <select className='select-difficulty'
-                        onChange={(e) => {
-                            const difficulty = e.target.value ;
-                            setDifficulty(difficulty);
-                        }}
+                            onChange={(e) => {
+                                const difficulty = e.target.value;
+                                setDifficulty(difficulty);
+                            }}
                         >
                             <option value="easy">Easy</option>
                             <option value="medium">Medium</option>
@@ -125,23 +147,24 @@ const QnGenerate = () => {
                     </div>
                     <div className="qn-marks">
                         <label >Marks</label>
-                        <input type ='text' 
-                                required
-                                value = {marks}
-                                onChange = {(e) => setMarks(e.target.value)}>
-                                    
+                        <input type='text'
+                            required
+                            value={marks}
+                            onChange={(e) => setMarks(e.target.value)}>
+
                         </input>
                     </div>
                 </div>
-                <button onClick = {handleGenerate } className='qn-generatebutton'>Generate</button>
+                <button type='button ' onClick={handleGenerate} className='qn-generatebutton'>Generate</button>
             </div>
             {/* <p>{type}</p> */}
             <p>{difficulty}</p>
             <p>{marks}</p>
+            
 
         </div>
     )
-    
+
 }
 
 export default QnGenerate

@@ -1,20 +1,34 @@
 import {useState} from 'react'
 import './Login.css'
 import collegelogo from '../../images/collegelogo.png'
-
+import Axios from 'axios'
 import {useNavigate } from 'react-router-dom'
 
 const Login = () => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
+    // const [teachers,setTeachers] = useState([])
 
 
     let navigate = useNavigate()
 
     const handleLogin = ()=> {
         if (username && password) {
-            navigate('/HomeTeachers')
+            Axios.post('http://192.168.1.40:3001/login/',{email:username,password:password}).then((response)=>{
+                console.log(response.data)
+                if(response.data.message==='success'){
+                    if(username==='admin@mec.ac.in'){
+
+                        navigate('./HomeAdmin')
+                    }
+                    else{
+                        const id= response.data.data.id
+                        console.log(id)
+                        navigate('./HomeTeachers/'+id)
+                    }
+                }
+            })
             // HomeTeachers or HomeAdmin
         } else {
             alert('enter all the fields')
@@ -54,9 +68,9 @@ const Login = () => {
 
                             </input>
                         </div>
-                        <button onClick={handleLogin} className='Button'>Login</button>   
+                        <button type='button' onClick={handleLogin} className='Button'>Login</button>   
                     </form>
-                    <div className='forgot'>Forgot Password?</div>   
+                    {/* <div className='forgot'>Forgot Password?</div>    */}
             
             </div>
             {/* <p>{username}</p>

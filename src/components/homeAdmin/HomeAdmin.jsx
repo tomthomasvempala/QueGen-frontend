@@ -4,7 +4,7 @@ import notification from '../../images/notification.png'
 import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
-import teachers from './dummydata'
+// import teachers from './dummydata'
 // import {useTable} from 'react-table'
 
 import { Link } from 'react-router-dom'
@@ -14,10 +14,14 @@ import exam_icon from '../../images/exam-icon.png'
 import mng_icon from '../../images/mng-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 import create_user from '../../images/create-user.png'
+import Axios from 'axios'
 
 const HomeAdmin = () => {
     const [date, setDate] = useState(new Date());
-
+    const [teachers,setTeachers] = useState([])
+    Axios.get('http://192.168.1.40:3001/teachers',{}).then((response)=>{
+        setTeachers(response.data)
+    })
     function refreshClock() {
         setDate(new Date());
     }
