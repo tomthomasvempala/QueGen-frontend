@@ -4,6 +4,8 @@ import collegelogo from '../../images/collegelogo.png'
 import Axios from 'axios'
 import {useNavigate } from 'react-router-dom'
 
+import baseUrl from '../../Services/base'
+
 const Login = () => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
@@ -13,9 +15,9 @@ const Login = () => {
 
     let navigate = useNavigate()
 
-    const handleLogin = ()=> {
+    const handleLogin = async ()=> {
         if (username && password) {
-            Axios.post('http://192.168.1.40:3001/login/',{email:username,password:password}).then((response)=>{
+            Axios.post( baseUrl + 'login/',{email:username,password:password}).then((response)=>{
                 console.log(response.data)
                 if(response.data.message==='success'){
                     if(username==='admin@mec.ac.in'){
@@ -31,7 +33,7 @@ const Login = () => {
             })
             // HomeTeachers or HomeAdmin
         } else {
-            alert('enter all the fields')
+            alert('Enter all the fields')
         }
     }
 
@@ -45,7 +47,7 @@ const Login = () => {
 
             <div className='App-login'>
                     <h1 className='login-heading'>Login</h1>
-                    <form>
+                    <form >
                         <div className='input-container'>
                             <div className='label'>
                                 <label>Username</label>

@@ -2,6 +2,7 @@ import {useState} from 'react'
 import './User.css'
 import collegelogo from '../../images/collegelogo.png'
 import {Link} from 'react-router-dom'
+import Axios from 'axios'
 
 
 const User = () => {
@@ -10,7 +11,12 @@ const User = () => {
     const [pwd,setPwd] = useState('');
     const [cpwd,setCpwd] = useState('');
     const [role,setRole] = useState('');
+
     const handleCreate = () => {
+        // Axios.post(baseurl + 'teachers/',{name:fname,pwd:pwd,dept:'C.S',email:uname}).then((response) => {
+
+        // })
+
         console.log('hello');
         
     }
@@ -104,13 +110,13 @@ const User = () => {
                         </div>
                     </div>
                 </div>
-                <p>
+                {/* <p>
                     {uname}
                     {fname}
                     {pwd}
                     {cpwd}
                     {role}
-                </p>
+                </p> */}
             </div>
         </div>
         

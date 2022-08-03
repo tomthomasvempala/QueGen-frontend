@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './HomeTeachers.css'
 
 import user_icon from '../../images/user-icon.png'
@@ -13,6 +13,7 @@ import collegelogo from '../../images/collegelogo.png'
 import subjects from './dummydata'
 import Axios from 'axios';
 import { Link, useParams } from 'react-router-dom'
+import baseUrl from '../../Services/base'
 
 const HomeTeachers = () => {
     const [date, setDate] = useState(new Date());
@@ -29,8 +30,9 @@ const HomeTeachers = () => {
     // }, []);
     // let cTime = date.toLocaleTimeString();
 
-    Axios.get('http://192.168.1.40:3001'+'/teachers/'+teacherId+'/subjects').then((response)=>{
+    Axios.get(baseUrl+'teachers/'+teacherId+'/subjects').then((response)=>{
         setSubs(response.data)
+        console.log(response.status)
     })
 
     return (

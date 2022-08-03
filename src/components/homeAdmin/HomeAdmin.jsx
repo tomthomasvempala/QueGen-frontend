@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './HomeAdmin.css'
 import notification from '../../images/notification.png'
 import user from '../../images/user.png'
@@ -15,23 +15,14 @@ import mng_icon from '../../images/mng-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 import create_user from '../../images/create-user.png'
 import Axios from 'axios'
+import baseUrl from '../../Services/base'
 
 const HomeAdmin = () => {
-    const [date, setDate] = useState(new Date());
     const [teachers,setTeachers] = useState([])
-    Axios.get('http://192.168.1.40:3001/teachers',{}).then((response)=>{
+    Axios.get( baseUrl + 'teachers',{}).then((response)=>{
         setTeachers(response.data)
+        console.log(response.status)
     })
-    function refreshClock() {
-        setDate(new Date());
-    }
-    useEffect(() => {
-        const timerId = setInterval(refreshClock, 1000);
-        return function cleanup() {
-            clearInterval(timerId);
-        };
-    }, []);
-    let cTime = date.toLocaleTimeString();
 
     return (
         <div >
@@ -68,9 +59,6 @@ const HomeAdmin = () => {
                 </div>
                 <div className="nav-user">
                     <img src={user} alt='not found' />
-                </div>
-                <div className="nav-time">
-                    <p>{cTime}</p>
                 </div>
             </div>
 
