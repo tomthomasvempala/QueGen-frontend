@@ -1,21 +1,45 @@
 import {useState} from 'react'
 import './Login.css'
 import collegelogo from '../../images/collegelogo.png'
+<<<<<<< HEAD
 
+=======
+import Axios from 'axios'
+>>>>>>> 426522a4c5cc4692ce622acffc20612c51a81770
 import {useNavigate } from 'react-router-dom'
+
+import baseUrl from '../../Services/base'
 
 const Login = () => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
+    // const [teachers,setTeachers] = useState([])
 
 
     let navigate = useNavigate()
 
     const handleLogin = async ()=> {
         if (username && password) {
+<<<<<<< HEAD
             // console.log(response)
             // navigate('/HomeAdmin')
+=======
+            Axios.post( baseUrl + 'login/',{email:username,password:password}).then((response)=>{
+                console.log(response.data)
+                if(response.data.message==='success'){
+                    if(username==='admin@mec.ac.in'){
+
+                        navigate('./HomeAdmin')
+                    }
+                    else{
+                        const id= response.data.data.id
+                        console.log(id)
+                        navigate('./HomeTeachers/'+id)
+                    }
+                }
+            })
+>>>>>>> 426522a4c5cc4692ce622acffc20612c51a81770
             // HomeTeachers or HomeAdmin
         } else {
             alert('Enter all the fields')
@@ -55,13 +79,13 @@ const Login = () => {
 
                             </input>
                         </div>
-                        <button  type="button" onClick={handleLogin} className='Button'>Login</button>    
+                        <button type='button' onClick={handleLogin} className='Button'>Login</button>   
                     </form>
-                    <div className='forgot'>Forgot Password?</div>   
+                    {/* <div className='forgot'>Forgot Password?</div>    */}
             
             </div>
-            <p>{username}</p>
-            <p>{password}</p>
+            {/* <p>{username}</p>
+            <p>{password}</p> */}
         </div>
     )
 }

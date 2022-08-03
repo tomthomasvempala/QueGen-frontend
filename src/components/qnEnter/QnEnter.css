@@ -92,3 +92,7 @@
     border-radius: 7px;
     font-family: 'Open Sans', sans-serif;;
 }
+
+.question-enter button{
+    cursor:pointer;
+}

@@ -2,6 +2,8 @@ import {useState} from 'react'
 import './User.css'
 import collegelogo from '../../images/collegelogo.png'
 import {Link} from 'react-router-dom'
+import Axios from 'axios'
+import baseUrl from '../../Services/base'
 
 
 const User = () => {
@@ -9,10 +11,21 @@ const User = () => {
     const [fname,setFname] = useState('');
     const [pwd,setPwd] = useState('');
     const [cpwd,setCpwd] = useState('');
-    const [role,setRole] = useState('');
+    // const [role,setRole] = useState('teacher');
+
     const handleCreate = () => {
-        console.log('hello');
-        
+        if(uname && fname && pwd && cpwd ){
+            if(pwd === cpwd){
+                Axios.post(baseUrl + 'teachers/',{name:fname,pwd:pwd,dept:'C.S',email:uname}).then((response) => {
+                    console.log(response.data)
+                })  
+            }else{
+                alert('passwords dont match')
+            }
+        }else{
+            alert('enter all fields')
+        }
+              
     }
 
     return (
@@ -28,7 +41,7 @@ const User = () => {
                     <div className="u-name">
                         <div className="u-uname">
                             <form>
-                                <label  >Username</label><br />
+                                <label  >E-Mail</label><br />
                                     <input type ='text' 
                                     required
                                     value = {uname}
@@ -80,7 +93,7 @@ const User = () => {
                             </form>
                         </div>
                     </div><br/>
-                    <div className="u-role">
+                    {/* <div className="u-role">
                         <label>Role</label><br/>
                         <select className='custom-select'
                         onChange={(e) => {
@@ -92,9 +105,9 @@ const User = () => {
                             <option value="student">Student</option>
                             <option value="teacher">Teacher</option>
                         </select>
-                    </div><br/>
+                    </div><br/> */}
                     <div className="u-buttons">
-                        <Link to = '/Home'>
+                        <Link to = '/HomeAdmin'>
                             <div className="b-discard">
                                 <button className='discard'>Discard</button>
                             </div>
@@ -104,13 +117,13 @@ const User = () => {
                         </div>
                     </div>
                 </div>
-                <p>
+                {/* <p>
                     {uname}
                     {fname}
                     {pwd}
                     {cpwd}
                     {role}
-                </p>
+                </p> */}
             </div>
         </div>
         

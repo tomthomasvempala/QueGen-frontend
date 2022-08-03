@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './HomeAdmin.css'
 import notification from '../../images/notification.png'
 import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
-import teachers from './dummydata'
+// import teachers from './dummydata'
 // import {useTable} from 'react-table'
 
 import { Link } from 'react-router-dom'
@@ -14,20 +14,15 @@ import exam_icon from '../../images/exam-icon.png'
 import mng_icon from '../../images/mng-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 import create_user from '../../images/create-user.png'
+import Axios from 'axios'
+import baseUrl from '../../Services/base'
 
 const HomeAdmin = () => {
-    const [date, setDate] = useState(new Date());
-
-    function refreshClock() {
-        setDate(new Date());
-    }
-    useEffect(() => {
-        const timerId = setInterval(refreshClock, 1000);
-        return function cleanup() {
-            clearInterval(timerId);
-        };
-    }, []);
-    let cTime = date.toLocaleTimeString();
+    const [teachers,setTeachers] = useState([])
+    Axios.get( baseUrl + 'teachers',{}).then((response)=>{
+        setTeachers(response.data)
+        console.log(response.status)
+    })
 
     return (
         <div >
@@ -65,9 +60,6 @@ const HomeAdmin = () => {
                 <div className="nav-user">
                     <img src={user} alt='not found' />
                 </div>
-                <div className="nav-time">
-                    <p>{cTime}</p>
-                </div>
             </div>
 
             <Link to='/create'>
@@ -89,7 +81,7 @@ const HomeAdmin = () => {
                             <th>E-Mail</th>
                         </tr>
                         {
-                            teachers.map((item) => {
+                            teachers.map((item,index) => {
                                 return (
                                     <tr>
                                         <td>{item.id}</td>

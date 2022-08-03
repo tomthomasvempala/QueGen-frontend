@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './HomeTeachers.css'
 
 import user_icon from '../../images/user-icon.png'
@@ -11,23 +11,29 @@ import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
 import subjects from './dummydata'
-
-import { Link } from 'react-router-dom'
+import Axios from 'axios';
+import { Link, useParams } from 'react-router-dom'
+import baseUrl from '../../Services/base'
 
 const HomeTeachers = () => {
     const [date, setDate] = useState(new Date());
-
+    const [subs,setSubs] = useState([])
+    const teacherId = useParams().id
     function refreshClock() {
         setDate(new Date());
     }
-    useEffect(() => {
-        const timerId = setInterval(refreshClock, 1000);
-        return function cleanup() {
-            clearInterval(timerId);
-        };
-    }, []);
-    let cTime = date.toLocaleTimeString();
+    // useEffect(() => {
+    //     const timerId = setInterval(refreshClock, 1000);
+    //     return function cleanup() {
+    //         clearInterval(timerId);
+    //     };
+    // }, []);
+    // let cTime = date.toLocaleTimeString();
 
+    Axios.get(baseUrl+'teachers/'+teacherId+'/subjects').then((response)=>{
+        setSubs(response.data)
+        console.log(response.status)
+    })
 
     return (
         <div >
@@ -66,16 +72,16 @@ const HomeTeachers = () => {
                     <img src={user} alt='not found' />
                 </div>
                 <div className="nav-time">
-                    <p>{cTime}</p>
+                    {/* <p>{cTime}</p> */}
                 </div>
             </div>
             <div className="subjects">
 
                 {
-                    subjects.map((item) => {
+                    subs.map((item) => {
                         return (
-                            <Link to ='/questions'>
-                            <div className="s-list">
+                            <Link to ={'/questions/'+item.code}>
+                            <div className="s-list" >
                                 <p className='sub-text'><b>{item.code}</b></p>
                                 <p>{item.name}</p>
                             </div>
@@ -84,20 +90,10 @@ const HomeTeachers = () => {
                     })
 
                 }
-
-                {/* <div className="s-list">
-                    deibje
-                </div>
-                <div className="s-list">
-                    deibje
-                </div>
-                <div className="s-list">
-                    deibje
-                </div> */}
             </div>
 
         </div>
-    )
+    )   
 }
 
 export default HomeTeachers

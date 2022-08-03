@@ -14,5 +14,6 @@
     font-size: larger;
     font-weight: bold;
     border-radius: 7px;
-    font-family: 'Open Sans', sans-serif;;
+    font-family: 'Open Sans', sans-serif;
+    cursor:pointer;
 }
