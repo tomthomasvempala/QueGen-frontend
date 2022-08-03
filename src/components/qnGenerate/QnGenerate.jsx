@@ -5,6 +5,7 @@ import user from '../../images/user.png'
 import collegelogo from '../../images/collegelogo.png'
 
 import subjects from './dummydata'
+import baseUrl from '../../Services/base'
 
 import user_icon from '../../images/user-icon.png'
 import exam_icon from '../../images/exam-icon.png'
@@ -13,16 +14,24 @@ import qn_icon from '../../images/qn-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 
 import { Link, useParams } from 'react-router-dom'
+import Axios from 'axios'
 
 
 
 const QnGenerate = () => {
-
+    const[cos,setCos] = useState([]);
+    const[tempcos,setTempcos] = useState([]);
     let subCode = useParams();
-    const subject = subjects.find((s) => { return s.code === subCode.code })
-    let cos = subject.courseOutcomes;
+    useEffect(() => {
+        Axios.get(baseUrl + 'subjects/' + subCode.code,{} ).then((response) => {
+            const subject = response.data
+            console.log(subject.courseOutcomes)
+            setCos(subject.courseOutcomes);
+        });
+      }, [subCode]);
+    
 
-    const [coutcomes, setCoutcomes] = useState([]);
+
 
     const [date, setDate] = useState(new Date());
 
@@ -45,7 +54,7 @@ const QnGenerate = () => {
     // const[sem,setSem] = useState('');
     // const[sub,setSub] = useState('');
     // const[type,setType] = useState([]);
-    const [difficulty, setDifficulty] = useState('');
+    // const [difficulty, setDifficulty] = useState('');
     const [marks, setMarks] = useState('');
 
 
@@ -108,16 +117,16 @@ const QnGenerate = () => {
                                             onChange={(e) => {
                                                 
                                                 if (e.target.checked) {
-                                                    coutcomes.push(index + 1)
-                                                    console.log(coutcomes)
-                                                    setCoutcomes(coutcomes)
+                                                    tempcos.push(index + 1)
+                                                    console.log(tempcos)
+                                                    setTempcos(tempcos)
                                 
                                                 } else {
-                                                    let i = coutcomes.indexOf(index + 1)
+                                                    let i = tempcos.indexOf(index + 1)
                                                     // console.log(index)
-                                                    coutcomes.splice(i,1)
-                                                    console.log(coutcomes)
-                                                    setCoutcomes(coutcomes)
+                                                    tempcos.splice(i,1)
+                                                    console.log(tempcos)
+                                                    setTempcos(tempcos)
                                     
                                                 }
                                                 
@@ -132,7 +141,7 @@ const QnGenerate = () => {
                         }
 
                     </div>
-                    <div className="qn-difficulty">
+                    {/* <div className="qn-difficulty">
                         <label>Level of Difficulty</label>
                         <select className='select-difficulty'
                             onChange={(e) => {
@@ -144,7 +153,7 @@ const QnGenerate = () => {
                             <option value="medium">Medium</option>
                             <option value="hard">Hard</option>
                         </select>
-                    </div>
+                    </div> */}
                     <div className="qn-marks">
                         <label >Marks</label>
                         <input type='text'
@@ -158,7 +167,7 @@ const QnGenerate = () => {
                 <button type='button ' onClick={handleGenerate} className='qn-generatebutton'>Generate</button>
             </div>
             {/* <p>{type}</p> */}
-            <p>{difficulty}</p>
+            {/* <p>{difficulty}</p> */}
             <p>{marks}</p>
             
 

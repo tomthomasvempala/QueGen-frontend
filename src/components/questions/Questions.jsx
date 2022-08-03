@@ -14,7 +14,7 @@ import collegelogo from '../../images/collegelogo.png'
 
 import { Link, useParams } from 'react-router-dom'
 
-const HomeTeachers = () => {
+const Questions = () => {
     let subCode = useParams();
     const subject = questionBank.find((s) => { return s.code === subCode.code })
     let questions = subject.questions;
@@ -72,7 +72,7 @@ const HomeTeachers = () => {
                 </div>
             </div>
             <div className="qn-based">
-                <Link to='/question-enter'>
+                <Link to={'/question-enter/' +subject.code}>
                     <div className="qn-insert">
                         <p>Enter Questions</p>
                     </div>
@@ -111,4 +111,4 @@ const HomeTeachers = () => {
     )
 }
 
-export default HomeTeachers
+export default Questions

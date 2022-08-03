@@ -9,11 +9,23 @@ import exam_icon from '../../images/exam-icon.png'
 import mng_icon from '../../images/mng-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 
-import {Link} from 'react-router-dom'
-
+import {Link,useParams} from 'react-router-dom'
+import Axios from 'axios'
+import baseUrl from '../../Services/base'
 
 const QnEnter = () => {
+    const[cos,setCos] = useState([]);
+    let subCode = useParams();
+    useEffect(() => {
+        Axios.get(baseUrl + 'subjects/' + subCode.code,{} ).then((response) => {
+            const subject = response.data
+            setCos(subject.courseOutcomes);
+        });
+      }, [subCode]);
+    
+
     const [date, setDate] = useState(new Date());
+    const[que,setQue] = useState('');
 
     function refreshClock() {
         setDate(new Date());
@@ -27,15 +39,24 @@ const QnEnter = () => {
     let cTime = date.toLocaleTimeString();
 
     const handleCreate = () => {
-        console.log('hello')
+        if(que && type && marks){
+            console.log(type)
+            console.log(marks)
+            Axios.put(baseUrl + 'questionBank/' + subCode.code,{que:que,courseOutcome:type,mark:marks}).then((response) => {
+                console.log(response.data)
+            })
+        }else{
+            alert('insert all fields')
+        }
+        
     }
 
 
     // const[sem,setSem] = useState('');
     // const[sub,setSub] = useState('');
-    const[type,setType] = useState('');
-    const[difficulty,setDifficulty] = useState('');
-    const[marks,setMarks] = useState('');
+    const[type,setType] = useState();
+    // const[difficulty,setDifficulty] = useState('');
+    const[marks,setMarks] = useState();
 
     return (
         <div >
@@ -83,23 +104,25 @@ const QnEnter = () => {
             <div className="qn-enter">
                 <div className="qn-conditions">
                     <div className="qn-type">
-                        <label>Type</label>
+                        <label>C.O</label>
                         <select className='select-type'
                         onChange={(e) => {
                             const type = e.target.value ;
-                            setType(type);
+                            setType(cos.indexOf(type) + 1);
                         }}
                         >
-                            <option value="CO1">CO1</option>
-                            <option value="CO2">CO2</option>
-                            <option value="CO3">CO3</option>
-                            <option value="CO4">CO4</option>
-                            <option value="CO5">CO5</option>
-                            <option value="CO6">CO6</option>
+                            {
+                                cos.map((item) => {
+                                    return(
+                                        <option value={item}>{item}</option>
+                                    )
+                                })
+                                
+                            }
                             
                         </select>
                     </div>
-                    <div className="qn-difficulty">
+                    {/* <div className="qn-difficulty">
                         <label>Level of Difficulty</label>
                         <select className='select-difficulty'
                         onChange={(e) => {
@@ -111,30 +134,35 @@ const QnEnter = () => {
                             <option value="medium">Medium</option>
                             <option value="hard">Hard</option>
                         </select>
-                    </div>
+                    </div> */}
                     <div className="qn-marks">
                         <label >Marks</label>
                         <input type ='text' 
                                 required
                                 value = {marks}
-                                onChange = {(e) => setMarks(e.target.value)}>
+                                onChange = {(e) => setMarks(parseInt(e.target.value))}>
                                     
                         </input>
                     </div>
                 </div>
                 <div className="qn-insertion">
-                    <textarea name="qn-insert" id="" cols="80" rows="15" placeholder = 'Type your Question'>
+                    <textarea name="qn-insert" id="" cols="80" rows="15" placeholder = 'Type your Question'
+                    required
+                    value = {que}
+                    onChange = {(e) => setQue(e.target.value)}>
                     
                     </textarea>
                 </div><br /><br />
-                <button onClick = {handleCreate} className='qn-create'>Enter</button>
+                <div className = 'question-enter'>
+                <button type ='button' onClick = {handleCreate} className='qn-create'>Enter</button>
+                </div>
                 {/* <p>{sem}</p>
                 <p>{sub}</p> */}
                 <p>{type}</p>
-                <p>{difficulty}</p>
+                {/* <p>{difficulty}</p> */}
                 <p>{marks}</p>
             </div>
-            
+            {/* <p>{que}</p> */}
         </div>
     )
 }

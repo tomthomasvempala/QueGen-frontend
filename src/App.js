@@ -18,7 +18,7 @@ function App() {
              <Route path = '/HomeAdmin'  element={<HomeAdmin/>} />
              <Route path = '/HomeTeachers/:id' element = {<HomeTeachers/>}/>
              <Route path = '/create' element = {<User/>}/>
-             <Route path = '/question-enter' element = {<QnEnter/>} />
+             <Route path = '/question-enter/:code' element = {<QnEnter/>} />
              <Route path = '/question-generate/:code' element = {<QnGenerate/>}/>
              <Route path = '/questions/:code' element = {<Questions/>}/>
 
