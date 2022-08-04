@@ -3,17 +3,17 @@ import React from 'react'
 
 
 
-const singleqn = (props) => {
+const Singleqn = (props) => {
     return (
-        <div>
+        
             <tr>
                 <td>{props.index}</td>
                 <td>{props.que}</td>
-                <td>{props.co}</td>
+                <td>{"CO"+props.co}</td>
                 <td>{props.mark}</td>
             </tr>
-        </div>
+        
     )
 }
 
-export default singleqn
+export default Singleqn

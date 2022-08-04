@@ -1,7 +1,7 @@
 import React from 'react'
 import './Qp.css'
 import collegelogo from '../../images/collegelogo.png'
-import singleqn from './singleqn'
+import Singleqn from './singleqn'
 import axios from 'axios'
 import baseUrl from '../../Services/base'
 import { useParams } from 'react-router-dom'
@@ -20,18 +20,19 @@ const Qp = () => {
     useEffect(() => {
         const url = baseUrl + 'questionBank/' + params.code;
         axios.get(baseUrl + 'questionBank/' + params.code).then((response) => {
-            axios.get(params.code).then((subResp) => {
+            axios.get(baseUrl+'subjects/'+params.code).then((subResp) => {
                 setsubDetails(subResp)
             })
             setcos(localStorage.getItem("qpCOS"))
             setquestionBank(response.data.questions); 
             qns = queGen(response.data.questions, localStorage.getItem("qpCOS"), marks);
             setfinalQuestions(qns)
-            console.log(qns)
+            console.log("genreated qns")
+            console.log(finalQuestions)
 
         })
 
-    }, [finalQuestions,subDetails,cos]);
+    }, []);
 
     return (
         <div>
@@ -40,7 +41,7 @@ const Qp = () => {
             </div>
             <div className="subject-details">
                 <p><b>{subDetails.name}</b></p>
-                <p><b>Subject Code</b></p>
+                <p><b>{subDetails.code}</b></p>
             </div>
             <div className="questions-descriptions">
                 <tbody>
@@ -53,9 +54,9 @@ const Qp = () => {
                             <th>Mark</th>
                         </tr>
                         {
-                            qns.map((item,index) => {
+                            finalQuestions&&finalQuestions.map((item,index) => {
                                 return(
-                                    <singleqn index = {index + 1} que = {item.que} mark = {item.mark} co = {item.courseOutcome} />                                )
+                                    <Singleqn index = {index + 1} que = {item.que} mark = {item.mark} co = {item.courseOutcome} />                                )
                             })
                         }
 

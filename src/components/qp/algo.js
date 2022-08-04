@@ -48,8 +48,7 @@ const queGen = ((allQuestions, reqCO, marks) => {
         finalQuestions.push(lastQ);
         remainingMarks = 0;
     }
-    console.log(finalQuestions)
-    console.log(remainingMarks)
+    return finalQuestions;
 })
 
 export default queGen;
