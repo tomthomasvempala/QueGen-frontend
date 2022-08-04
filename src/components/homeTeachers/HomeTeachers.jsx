@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './HomeTeachers.css'
 
 import user_icon from '../../images/user-icon.png'
@@ -22,13 +22,13 @@ const HomeTeachers = () => {
     function refreshClock() {
         setDate(new Date());
     }
-    // useEffect(() => {
-    //     const timerId = setInterval(refreshClock, 1000);
-    //     return function cleanup() {
-    //         clearInterval(timerId);
-    //     };
-    // }, []);
-    // let cTime = date.toLocaleTimeString();
+    useEffect(() => {
+        const timerId = setInterval(refreshClock, 1000);
+        return function cleanup() {
+            clearInterval(timerId);
+        };
+    }, []);
+    let cTime = date.toLocaleTimeString();
 
     Axios.get(baseUrl+'teachers/'+teacherId+'/subjects').then((response)=>{
         setSubs(response.data)
@@ -46,14 +46,14 @@ const HomeTeachers = () => {
                         <img src={user_icon} alt="not found" />
                         <p>User</p>
                     </div>
-                    <div className="s-exam">
+                    {/* <div className="s-exam">
                         <img src={exam_icon} alt="not found" />
                         <p>Geak Exam</p>
                     </div>
                     <div className="s-mng">
                         <img src={mng_icon} alt="not found" name='mng' />
                         <p>Exam Management</p>
-                    </div>
+                    </div> */}
                     <div className="s-logout">
                         <img src={logout_icon} alt="not found" />
                         <p>Logout</p>
@@ -65,14 +65,14 @@ const HomeTeachers = () => {
                 </div>
             </div>
             <div className='nav-wrapper'>
-                <div className="nav-notification">
+                {/* <div className="nav-notification">
                     <img src={notification} alt='not found' />
                 </div>
                 <div className="nav-user">
                     <img src={user} alt='not found' />
-                </div>
+                </div> */}
                 <div className="nav-time">
-                    {/* <p>{cTime}</p> */}
+                    <p>{cTime}</p>
                 </div>
             </div>
             <div className="subjects">

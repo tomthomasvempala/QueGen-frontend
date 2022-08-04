@@ -2,14 +2,15 @@ import React from 'react'
 
 
 
-const singleqn = () => {
+
+const singleqn = (props) => {
     return (
         <div>
             <tr>
-                <td>1</td>
-                <td>sedfhvbujydefhg</td>
-                <td>CO1</td>
-                <td>5</td>
+                <td>{props.index}</td>
+                <td>{props.que}</td>
+                <td>{props.co}</td>
+                <td>{props.mark}</td>
             </tr>
         </div>
     )

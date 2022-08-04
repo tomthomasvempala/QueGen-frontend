@@ -69,16 +69,16 @@ const QnEnter = () => {
                 <div className="s-icons">
                         <div className="s-user">
                             <img src={user_icon} alt="not found" />
-                            <p>User</p>
+                            <p>Questions</p>
                         </div>
-                    <div className="s-exam">
+                    {/* <div className="s-exam">
                         <img src={exam_icon} alt="not found" />
                         <p>Geak Exam</p>
                     </div>
                     <div className="s-mng">
                         <img src={mng_icon} alt="not found"  name = 'mng'/>
                         <p>Exam Management</p>
-                    </div>
+                    </div> */}
                     <div className="s-logout">
                         <img src={logout_icon} alt="not found" />
                         <p>Logout</p>
@@ -90,12 +90,12 @@ const QnEnter = () => {
                 </div>
             </div>
             <div className = 'nav-wrapper'>
-                <div className="nav-notification">
+                {/* <div className="nav-notification">
                     <img src={notification} alt = 'not found' />
                 </div>
                 <div className="nav-user">
                     <img src= {user} alt = 'not found'/>
-                </div>
+                </div> */}
                 <div className="nav-time">
                     <p>{cTime}</p>
                 </div>

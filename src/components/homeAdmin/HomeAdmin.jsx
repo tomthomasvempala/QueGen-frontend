@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './HomeAdmin.css'
 import notification from '../../images/notification.png'
 import user from '../../images/user.png'
@@ -18,6 +18,19 @@ import Axios from 'axios'
 import baseUrl from '../../Services/base'
 
 const HomeAdmin = () => {
+    const [date, setDate] = useState(new Date());
+
+    function refreshClock() {
+        setDate(new Date());
+    }
+    useEffect(() => {
+        const timerId = setInterval(refreshClock, 1000);
+        return function cleanup() {
+            clearInterval(timerId);
+        };
+    }, []);
+    let cTime = date.toLocaleTimeString();
+    
     const [teachers,setTeachers] = useState([])
     Axios.get( baseUrl + 'teachers',{}).then((response)=>{
         setTeachers(response.data)
@@ -35,14 +48,14 @@ const HomeAdmin = () => {
                         <img src={user_icon} alt="not found" />
                         <p>User</p>
                     </div>
-                    <div className="s-exam">
+                    {/* <div className="s-exam">
                         <img src={exam_icon} alt="not found" />
                         <p>Geak Exam</p>
                     </div>
                     <div className="s-mng">
                         <img src={mng_icon} alt="not found" name='mng' />
                         <p>Exam Management</p>
-                    </div>
+                    </div> */}
                     <div className="s-logout">
                         <img src={logout_icon} alt="not found" />
                         <p>Logout</p>
@@ -54,11 +67,14 @@ const HomeAdmin = () => {
                 </div>
             </div>
             <div className='nav-wrapper'>
-                <div className="nav-notification">
+                {/* <div className="nav-notification">
                     <img src={notification} alt='not found' />
                 </div>
                 <div className="nav-user">
                     <img src={user} alt='not found' />
+                </div> */}
+                <div className="nav-time">
+                    <p>{cTime}</p>
                 </div>
             </div>
 

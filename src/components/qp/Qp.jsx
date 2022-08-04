@@ -11,6 +11,7 @@ import queGen from './algo'
 
 const Qp = () => {
     const params = useParams();
+    let qns = []
     const [questionBank, setquestionBank] = useState([]);
     const [finalQuestions, setfinalQuestions] = useState([]);
     const [subDetails, setsubDetails] = useState({});
@@ -24,13 +25,13 @@ const Qp = () => {
             })
             setcos(localStorage.getItem("qpCOS"))
             setquestionBank(response.data.questions); 
-            const qns = queGen(response.data.questions, localStorage.getItem("qpCOS"), marks);
+            qns = queGen(response.data.questions, localStorage.getItem("qpCOS"), marks);
             setfinalQuestions(qns)
             console.log(qns)
 
         })
 
-    }, []);
+    }, [finalQuestions,subDetails,cos]);
 
     return (
         <div>
@@ -51,10 +52,12 @@ const Qp = () => {
                             <th>Course Outcome</th>
                             <th>Mark</th>
                         </tr>
-                        {/* {finalQuestions.map((qn) => {
-                            return (<tr></tr>)
-                        })} */}
-                        {/* <singleqn /> */}
+                        {
+                            qns.map((item,index) => {
+                                return(
+                                    <singleqn index = {index + 1} que = {item.que} mark = {item.mark} co = {item.courseOutcome} />                                )
+                            })
+                        }
 
                     </table>
                 </tbody>
