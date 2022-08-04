@@ -45,7 +45,7 @@ const Qp = () => {
             </div>
             <div className="questions-descriptions">
                 <tbody>
-                    <table>
+                    <table className='quedescriptions'>
 
                         <tr>
                             <th>Q.No</th>

@@ -1,5 +1,16 @@
-.question-descriptions table,
+.questions-descriptions table,
 th,
 td {
     border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.questions-descriptions td{
+    padding:1rem 3rem 1rem;
+}
+
+.questions-descriptions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

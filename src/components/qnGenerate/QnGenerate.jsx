@@ -94,10 +94,14 @@ const QnGenerate = () => {
                         <img src={mng_icon} alt="not found" name='mng' />
                         <p>Exam Management</p>
                     </div> */}
+                    <Link to = '/'>
+
+                    
                     <div className="s-logout">
                         <img src={logout_icon} alt="not found" />
                         <p>Logout</p>
                     </div>
+                    </Link>
                 </div>
                 <br /><br /><br /><br /><br /><br /><br /><br />
                 <div className="s-collegelogo">
