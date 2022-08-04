@@ -1,11 +1,7 @@
 import {useState} from 'react'
 import './Login.css'
 import collegelogo from '../../images/collegelogo.png'
-<<<<<<< HEAD
-
-=======
 import Axios from 'axios'
->>>>>>> 426522a4c5cc4692ce622acffc20612c51a81770
 import {useNavigate } from 'react-router-dom'
 
 import baseUrl from '../../Services/base'
@@ -21,10 +17,6 @@ const Login = () => {
 
     const handleLogin = async ()=> {
         if (username && password) {
-<<<<<<< HEAD
-            // console.log(response)
-            // navigate('/HomeAdmin')
-=======
             Axios.post( baseUrl + 'login/',{email:username,password:password}).then((response)=>{
                 console.log(response.data)
                 if(response.data.message==='success'){
@@ -39,7 +31,6 @@ const Login = () => {
                     }
                 }
             })
->>>>>>> 426522a4c5cc4692ce622acffc20612c51a81770
             // HomeTeachers or HomeAdmin
         } else {
             alert('Enter all the fields')
