@@ -20,9 +20,9 @@ const Qp = () => {
     useEffect(() => {
         const url = baseUrl + 'questionBank/' + params.code;
         axios.get(baseUrl + 'questionBank/' + params.code).then((response) => {
-            // axios.get(params.code).then((subResp) => {
-            //     setsubDetails(subResp)
-            // })
+            axios.get(baseUrl+'subjects/'+params.code).then((subResp) => {
+                setsubDetails(subResp)
+            })
             setcos(localStorage.getItem("qpCOS"))
             setquestionBank(response.data.questions); 
             qns = queGen(response.data.questions, localStorage.getItem("qpCOS"), marks);
@@ -41,7 +41,7 @@ const Qp = () => {
             </div>
             <div className="subject-details">
                 <p><b>{subDetails.name}</b></p>
-                <p><b>Subject Code</b></p>
+                <p><b>{subDetails.code}</b></p>
             </div>
             <div className="questions-descriptions">
                 <tbody>

@@ -9,7 +9,7 @@ const Singleqn = (props) => {
             <tr>
                 <td>{props.index}</td>
                 <td>{props.que}</td>
-                <td>{props.co}</td>
+                <td>{"CO"+props.co}</td>
                 <td>{props.mark}</td>
             </tr>
         
