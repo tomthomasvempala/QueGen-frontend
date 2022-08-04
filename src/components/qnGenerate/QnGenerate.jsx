@@ -6,6 +6,7 @@ import collegelogo from '../../images/collegelogo.png'
 
 import subjects from './dummydata'
 import baseUrl from '../../Services/base'
+// import questionPaper from '../questionPaper'
 
 import user_icon from '../../images/user-icon.png'
 import exam_icon from '../../images/exam-icon.png'
@@ -48,7 +49,12 @@ const QnGenerate = () => {
 
 
     const handleGenerate = () => {
-        console.log('hello')
+        if(tempcos.length !== 0 && marks){
+            console.log('hello')
+        }else{
+            alert('enter all fields')
+        }
+        
     }
 
     // const[sem,setSem] = useState('');
@@ -168,8 +174,8 @@ const QnGenerate = () => {
             </div>
             {/* <p>{type}</p> */}
             {/* <p>{difficulty}</p> */}
-            <p>{marks}</p>
-            
+            {/* <p>{marks}</p> */}
+            {/* <questionPaper/> */}
 
         </div>
     )
