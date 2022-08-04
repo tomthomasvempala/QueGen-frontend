@@ -16,6 +16,7 @@ import logout_icon from '../../images/logout-icon.png'
 
 import { Link, useParams } from 'react-router-dom'
 import Axios from 'axios'
+import {useNavigate } from 'react-router-dom'
 
 
 
@@ -31,7 +32,8 @@ const QnGenerate = () => {
         });
       }, [subCode]);
     
-
+      
+    let navigate = useNavigate()
 
 
     const [date, setDate] = useState(new Date());
@@ -48,14 +50,7 @@ const QnGenerate = () => {
     let cTime = date.toLocaleTimeString();
 
 
-    const handleGenerate = () => {
-        if(tempcos.length !== 0 && marks){
-            console.log('hello')
-        }else{
-            alert('enter all fields')
-        }
-        
-    }
+    
 
     // const[sem,setSem] = useState('');
     // const[sub,setSub] = useState('');
@@ -63,6 +58,16 @@ const QnGenerate = () => {
     // const [difficulty, setDifficulty] = useState('');
     const [marks, setMarks] = useState('');
 
+        const handleGenerate = () => {
+        if(tempcos.length !== 0 && marks){
+            console.log(tempcos)
+            localStorage.setItem("qpCOS", tempcos);
+            navigate('/question-paper/'+subCode.code+'/'+parseInt(marks))
+        }else{
+            alert('enter all fields')
+        }
+        
+    }
 
     return (
         <div>

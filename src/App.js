@@ -7,6 +7,7 @@ import { BrowserRouter as Router ,Route, Routes } from 'react-router-dom'
 import Login from './components/login/Login'
 import QnGenerate from './components/qnGenerate/QnGenerate'
 import Questions from './components/questions/Questions'
+import Qp from './components/qp/Qp';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
              <Route path = '/question-enter/:code' element = {<QnEnter/>} />
              <Route path = '/question-generate/:code' element = {<QnGenerate/>}/>
              <Route path = '/questions/:code' element = {<Questions/>}/>
+             <Route path = '/question-paper/:code/:marks' element = {<Qp/>}></Route>
 
            </Routes>
        </div>
