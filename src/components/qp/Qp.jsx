@@ -51,13 +51,13 @@ const Qp = () => {
                             subDetails.courseOutcomes.map((item, index) => {
                                 return (
                                     <tr>
-                                        <td>{"CO"+(index+1)}</td>
-                                        <td>{item}</td>
+                                        <td >{"CO"+(index+1)}</td>
+                                        <td colSpan={3}>{item}</td>
                                     </tr>)
                             })
                         }
-                    </table>
-                    <table className='quedescriptions'>
+                    {/* </table>
+                    <table className='quedescriptions'> */}
 
                         <tr>
                             <th>Q.No</th>
