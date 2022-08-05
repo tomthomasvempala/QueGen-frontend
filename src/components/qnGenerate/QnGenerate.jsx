@@ -150,7 +150,7 @@ const QnGenerate = () => {
                                         }
                                         
                                         />
-                                        <label>{item}</label>  <br />
+                                        <label>{"CO"+(index+1)}</label>  <br />
                                     </form>
                                 )
                             })

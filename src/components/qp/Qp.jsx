@@ -46,7 +46,7 @@ const Qp = () => {
             </div>
             <div className="questions-descriptions">
                 <tbody>
-                    {/* <table className='courseoutcomes'>
+                    <table className='courseoutcomes'>
                         {
                             subDetails.courseOutcomes.map((item, index) => {
                                 return (
@@ -56,7 +56,7 @@ const Qp = () => {
                                     </tr>)
                             })
                         }
-                    </table> */}
+                    </table>
                     <table className='quedescriptions'>
 
                         <tr>
