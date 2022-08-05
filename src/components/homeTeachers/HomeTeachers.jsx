@@ -14,11 +14,13 @@ import subjects from './dummydata'
 import Axios from 'axios';
 import { Link, useParams } from 'react-router-dom'
 import baseUrl from '../../Services/base'
+import React  from 'react';
 
 const HomeTeachers = () => {
     const [date, setDate] = useState(new Date());
-    const [subs,setSubs] = useState([])
-    const teacherId = useParams().id
+    const [subs, setSubs] = useState([])
+    const [isLoading, setisLoading] = useState(true);
+    const teacherdata = JSON.parse(localStorage.getItem("userDetails"))
     function refreshClock() {
         setDate(new Date());
     }
@@ -27,14 +29,20 @@ const HomeTeachers = () => {
         return function cleanup() {
             clearInterval(timerId);
         };
+
+    }, [subs]);
+
+
+    useEffect(() => {
+
+        Axios.get(baseUrl + 'teachers/' + teacherdata.id + '/subjects').then((response) => {
+            setSubs(response.data)
+            setisLoading(false)
+        })
+
     }, []);
     let cTime = date.toLocaleTimeString();
-
-    Axios.get(baseUrl+'teachers/'+teacherId+'/subjects').then((response)=>{
-        setSubs(response.data)
-        console.log(response.status)
-    })
-
+    
     return (
         <div >
             <div className="side-bar">
@@ -75,7 +83,8 @@ const HomeTeachers = () => {
                     <p>{cTime}</p>
                 </div>
             </div>
-            <div className="subjects">
+            {isLoading?(<div class="loading">Please Wait</div>):
+                <div className="subjects">
 
                 {
                     subs.map((item) => {
@@ -91,6 +100,8 @@ const HomeTeachers = () => {
 
                 }
             </div>
+            }
+            
 
         </div>
     )   

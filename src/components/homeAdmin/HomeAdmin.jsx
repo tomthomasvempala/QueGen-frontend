@@ -9,6 +9,7 @@ import collegelogo from '../../images/collegelogo.png'
 
 import { Link } from 'react-router-dom'
 
+import React  from 'react';
 import user_icon from '../../images/user-icon.png'
 import exam_icon from '../../images/exam-icon.png'
 import mng_icon from '../../images/mng-icon.png'

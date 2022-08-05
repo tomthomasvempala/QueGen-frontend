@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React  from 'react';
 import './QnGenerate.css'
 import notification from '../../images/notification.png'
 import user from '../../images/user.png'
@@ -9,9 +10,9 @@ import baseUrl from '../../Services/base'
 // import questionPaper from '../questionPaper'
 
 import user_icon from '../../images/user-icon.png'
-import exam_icon from '../../images/exam-icon.png'
-import mng_icon from '../../images/mng-icon.png'
-import qn_icon from '../../images/qn-icon.png'
+// import exam_icon from '../../images/exam-icon.png'
+// import mng_icon from '../../images/mng-icon.png'
+// import qn_icon from '../../images/qn-icon.png'
 import logout_icon from '../../images/logout-icon.png'
 
 import { Link, useParams } from 'react-router-dom'
