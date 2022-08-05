@@ -4,6 +4,7 @@ import collegelogo from '../../images/collegelogo.png'
 import {Link} from 'react-router-dom'
 import Axios from 'axios'
 import baseUrl from '../../Services/base'
+import React  from 'react';
 
 
 const User = () => {

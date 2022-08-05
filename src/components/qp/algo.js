@@ -42,11 +42,12 @@ const queGen = ((allQuestions, reqCO, marks) => {
     }
     unusedQuestions.sort((a, b) => { return a.mark > b.mark })
     if (unusedQuestions.length != 0) {
-
-        const lastQ = unusedQuestions[0];
-        lastQ.mark = remainingMarks;
-        finalQuestions.push(lastQ);
-        remainingMarks = 0;
+        if (remainingMarks > 0) {
+            const lastQ = unusedQuestions[0];
+            lastQ.mark = remainingMarks;
+            finalQuestions.push(lastQ);
+            remainingMarks = 0;
+        }
     }
     return finalQuestions;
 })

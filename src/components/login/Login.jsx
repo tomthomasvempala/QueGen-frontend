@@ -4,6 +4,7 @@ import collegelogo from '../../images/collegelogo.png'
 import Axios from 'axios'
 import {useNavigate } from 'react-router-dom'
 
+import React  from 'react';
 import baseUrl from '../../Services/base'
 
 const Login = () => {
@@ -25,13 +26,16 @@ const Login = () => {
                         navigate('./HomeAdmin')
                     }
                     else{
-                        const id= response.data.data.id
-                        console.log(id)
-                        navigate('./HomeTeachers/'+id)
+                        const teacherData= response.data.data
+                        console.log(JSON.stringify(teacherData))
+                        localStorage.setItem("userDetails",JSON.stringify(teacherData))
+                        navigate('./HomeTeachers/')
                     }
                 }
+                else{
+                    alert("Invalid credentials")
+                }
             })
-            // HomeTeachers or HomeAdmin
         } else {
             alert('Enter all the fields')
         }

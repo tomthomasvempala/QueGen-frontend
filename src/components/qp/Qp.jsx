@@ -14,17 +14,18 @@ const Qp = () => {
     let qns = []
     const [questionBank, setquestionBank] = useState([]);
     const [finalQuestions, setfinalQuestions] = useState([]);
-    const [subDetails, setsubDetails] = useState({});
+    const [subDetails, setsubDetails] = useState({courseOutcomes:[]});
     const [cos, setcos] = useState([]);
     const marks = params.marks;
     useEffect(() => {
         const url = baseUrl + 'questionBank/' + params.code;
         axios.get(baseUrl + 'questionBank/' + params.code).then((response) => {
-            axios.get(baseUrl+'subjects/'+params.code).then((subResp) => {
-                setsubDetails(subResp)
+            axios.get(baseUrl + 'subjects/' + params.code).then((subResp) => {
+                console.log(subResp.data)
+                setsubDetails(subResp.data)
             })
             setcos(localStorage.getItem("qpCOS"))
-            setquestionBank(response.data.questions); 
+            setquestionBank(response.data.questions);
             qns = queGen(response.data.questions, localStorage.getItem("qpCOS"), marks);
             setfinalQuestions(qns)
             console.log("genreated qns")
@@ -45,7 +46,18 @@ const Qp = () => {
             </div>
             <div className="questions-descriptions">
                 <tbody>
-                    <table className='quedescriptions'>
+                    <table className='courseoutcomes'>
+                        {
+                            subDetails.courseOutcomes.map((item, index) => {
+                                return (
+                                    <tr>
+                                        <td >{"CO"+(index+1)}</td>
+                                        <td colSpan={3}>{item}</td>
+                                    </tr>)
+                            })
+                        }
+                    {/* </table>
+                    <table className='quedescriptions'> */}
 
                         <tr>
                             <th>Q.No</th>
@@ -54,9 +66,9 @@ const Qp = () => {
                             <th>Mark</th>
                         </tr>
                         {
-                            finalQuestions&&finalQuestions.map((item,index) => {
-                                return(
-                                    <Singleqn index = {index + 1} que = {item.que} mark = {item.mark} co = {item.courseOutcome} />                                )
+                            finalQuestions && finalQuestions.map((item, index) => {
+                                return (
+                                    <Singleqn index={index + 1} que={item.que} mark={item.mark} co={item.courseOutcome} />)
                             })
                         }
 

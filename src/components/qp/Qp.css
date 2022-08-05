@@ -1,16 +1,31 @@
-.questions-descriptions table,
-th,
-td {
+.questions-descriptions table {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-.questions-descriptions td{
-    padding:1rem 3rem 1rem;
+.questions-descriptions th {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
-.questions-descriptions{
+.questions-descriptions td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.questions-descriptions td {
+    padding: 1rem 3rem 1rem;
+}
+
+.questions-descriptions {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.courseoutcomes table {
+    display: flex;
+    max-width: 25rem;
+    border: 1px solid black;
+    border-collapse: collapse;
 }

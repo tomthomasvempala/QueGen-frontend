@@ -8,16 +8,18 @@ import Login from './components/login/Login'
 import QnGenerate from './components/qnGenerate/QnGenerate'
 import Questions from './components/questions/Questions'
 import Qp from './components/qp/Qp';
+import React  from 'react';
+
 
 function App() {
   return (
     // <HomeTeachers/>
     <Router>
        <div className="App">
-         <Routes>
+       <Routes>
              <Route exact path = '/' element={<Login/>} />
              <Route path = '/HomeAdmin'  element={<HomeAdmin/>} />
-             <Route path = '/HomeTeachers/:id' element = {<HomeTeachers/>}/>
+             <Route path = '/HomeTeachers' element = {<HomeTeachers/>}/>
              <Route path = '/create' element = {<User/>}/>
              <Route path = '/question-enter/:code' element = {<QnEnter/>} />
              <Route path = '/question-generate/:code' element = {<QnGenerate/>}/>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React  from 'react';
 import './QnEnter.css'
 import notification from '../../images/notification.png'
 import user from '../../images/user.png'
