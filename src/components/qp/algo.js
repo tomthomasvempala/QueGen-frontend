@@ -49,7 +49,8 @@ const queGen = ((allQuestions, reqCO, marks) => {
             remainingMarks = 0;
         }
     }
-    return finalQuestions;
+    finalQuestions = finalQuestions.sort((a, b) => { return a.mark > b.mark });
+    return finalQuestions
 })
 
 export default queGen;

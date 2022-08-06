@@ -1,6 +1,9 @@
 .questions-descriptions table {
     border: 1px solid black;
     border-collapse: collapse;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .questions-descriptions th {
@@ -14,7 +17,7 @@
 }
 
 .questions-descriptions td {
-    padding: 1rem 3rem 1rem;
+    padding: 0.5rem 0.5rem 0.5rem;
 }
 
 .questions-descriptions {
@@ -23,9 +26,32 @@
     justify-content: center;
 }
 
-.courseoutcomes table {
+.quedescriptions table {
     display: flex;
-    max-width: 25rem;
+    width: 25rem;
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+.courseoutcomes table {
+    display: flex;
+    width: 25rem;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.courseItem {
+    text-align: left;
+}
+
+.qnheading th {
+    padding: 0.5rem 3rem 0.5rem;
+}
+
+.COcolumn {
+    width: 3%;
+}
+
+.queItem {
+    text-align: left;
 }
