@@ -7,6 +7,7 @@ import baseUrl from '../../Services/base'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import queGen from './algo'
+import teacherCSV from './teachercsv'
 
 
 const Qp = () => {
@@ -14,26 +15,54 @@ const Qp = () => {
     let qns = []
     const [questionBank, setquestionBank] = useState([]);
     const [finalQuestions, setfinalQuestions] = useState([]);
-    const [subDetails, setsubDetails] = useState({ courseOutcomes: [] });
+    const [subDetails, setsubDetails] = useState({ courseOutcomes: [] ,teachers:[]});
     const [cos, setcos] = useState([]);
+    const [teacherNames, setteacherNames] = useState([]);
     const marks = params.marks;
     useEffect(() => {
+        console.log("hey")
         const url = baseUrl + 'questionBank/' + params.code;
         axios.get(baseUrl + 'questionBank/' + params.code).then((response) => {
             axios.get(baseUrl + 'subjects/' + params.code).then((subResp) => {
-                console.log(subResp.data)
                 setsubDetails(subResp.data)
             })
-            setcos(localStorage.getItem("qpCOS"))
             setquestionBank(response.data.questions);
-            qns = queGen(response.data.questions, localStorage.getItem("qpCOS"), marks);
+            const c = localStorage.getItem("qpCOS").split(',').map(function (item) {
+                return parseInt(item, 10);
+            });
+            setcos(c)
+            qns = queGen(response.data.questions, c, marks);
             setfinalQuestions(qns)
-            console.log("genreated qns")
-            console.log(finalQuestions)
+            // console.log("genreated qns")
+            // console.log(finalQuestions)
 
         })
 
     }, []);
+
+    useEffect(() => {
+        var tcrNames = []
+        subDetails.teachers.forEach((teacherId) => {
+            // setteacherNames([])
+            axios.get(baseUrl + 'teachers/' + teacherId).then((teacherResp) => {
+                tcrNames = [...tcrNames,teacherResp.data.name]
+                setteacherNames(tcrNames)
+                // console.log(subDetails.teachers)
+                // console.log(teacherResp.data.name)
+                // tcrNames = [...tcrNames,teacherResp.data.name]
+                // setteacherNames(arr => [...arr ,teacherResp.data.name])
+            })
+        })
+        // setteacherNames(["allen solly","peter england"]) 
+        // setteacherNames(tcrNames) 
+        // console.log(tcrNames.length)
+    }, [subDetails])
+
+    useEffect(()=>{
+        // console.log(teacherNames)
+    },
+    [teacherNames])
+
 
     return (
         <div>
@@ -46,14 +75,14 @@ const Qp = () => {
                             <td>            <div className="header">
                                 <img src={collegelogo} />
                             </div></td>
-                            <td><b>GOVT MODEL ENGINEERING COLLEGE, THRIKKAKARA <br/>Managed by IHRD, A Govt. of Kerala Undertaking <br/>DEPARTMENT OF COMPUTERE SCIENCE AND ENGINEERING</b></td>
+                            <td><b>GOVT MODEL ENGINEERING COLLEGE, THRIKKAKARA <br />Managed by IHRD, A Govt. of Kerala Undertaking <br />DEPARTMENT OF COMPUTERE SCIENCE AND ENGINEERING</b></td>
                         </tr>
                     </table>
 
                     <table className='degreeDetails'>
                         <tr>
-                            <td><b>B.TECH. DEGREE FOURTH SEMESTER<br/>COMPUTER SCIENCE AND ENGINEERING<br/>SECOND INTERNAL EXAMINATION - JULY 2022</b></td>
-                            <td><b>Academic Year:<br/>2021-22 </b></td>
+                            <td><b>B.TECH. DEGREE FOURTH SEMESTER<br />COMPUTER SCIENCE AND ENGINEERING<br />SECOND INTERNAL EXAMINATION - JULY 2022</b></td>
+                            <td><b>Academic Year:<br />2021-22 </b></td>
                         </tr>
                     </table>
                     <table className='subjectDeatils'>
@@ -67,7 +96,7 @@ const Qp = () => {
                         <tr>
                             <td>Duration :<b>2 Hrs</b> </td>
                             <td>Max marks : <b>40</b></td>
-                            <td>Faculty in charge:<b></b></td>
+                            <td>Faculty in charge: <b>{teacherCSV(teacherNames)}</b></td>
                         </tr>
                     </table>
                     <table className='courseoutcomes'>
