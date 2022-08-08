@@ -3,9 +3,9 @@
 // const reqCO = [1, 2, 3, 5]
 
 const queGen = ((allQuestions, reqCO, marks) => {
-    reqCO = reqCO.split(',').map(function(item) {
-        return parseInt(item, 10);
-    });
+    // reqCO = reqCO.split(',').map(function(item) {
+    //     return parseInt(item, 10);
+    // });
     let remainingMarks = marks
     let COqueue = [];
     reqCO.forEach((co) => {
@@ -49,7 +49,9 @@ const queGen = ((allQuestions, reqCO, marks) => {
             remainingMarks = 0;
         }
     }
-    return finalQuestions;
+    finalQuestions = finalQuestions.sort((a, b) => { return a.mark > b.mark ? 1 : -1 });
+    return finalQuestions
 })
+
 
 export default queGen;
