@@ -33,8 +33,6 @@ const Qp = () => {
             setcos(c)
             qns = queGen(response.data.questions, c, marks);
             setfinalQuestions(qns)
-            // console.log("genreated qns")
-            // console.log(finalQuestions)
 
         })
 
@@ -43,25 +41,12 @@ const Qp = () => {
     useEffect(() => {
         var tcrNames = []
         subDetails.teachers.forEach((teacherId) => {
-            // setteacherNames([])
             axios.get(baseUrl + 'teachers/' + teacherId).then((teacherResp) => {
                 tcrNames = [...tcrNames,teacherResp.data.name]
                 setteacherNames(tcrNames)
-                // console.log(subDetails.teachers)
-                // console.log(teacherResp.data.name)
-                // tcrNames = [...tcrNames,teacherResp.data.name]
-                // setteacherNames(arr => [...arr ,teacherResp.data.name])
             })
         })
-        // setteacherNames(["allen solly","peter england"]) 
-        // setteacherNames(tcrNames) 
-        // console.log(tcrNames.length)
     }, [subDetails])
-
-    useEffect(()=>{
-        // console.log(teacherNames)
-    },
-    [teacherNames])
 
 
     return (
