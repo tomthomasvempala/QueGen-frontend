@@ -80,7 +80,7 @@ const Qp = () => {
                     <table className='examDetails'>
                         <tr>
                             <td>Duration :<b>2 Hrs</b> </td>
-                            <td>Max marks : <b>40</b></td>
+                            <td>Max marks : <b>{marks}</b></td>
                             <td>Faculty in charge: <b>{teacherCSV(teacherNames)}</b></td>
                         </tr>
                     </table>
